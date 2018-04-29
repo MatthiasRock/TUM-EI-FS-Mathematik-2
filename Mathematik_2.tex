@@ -1,0 +1,1165 @@
+% #####################################################################
+% #####################################################################
+% ##                                                                 ##
+% ##                             Lizenz:                             ##
+% ##                         CC BY-NC-SA 3.0                         ##
+% ##      http://creativecommons.org/licenses/by-nc-sa/3.0/de/       ##
+% ##                                                                 ##
+% #####################################################################
+% ##   Diese Datei kann beliebig verändert werden, solange darauf    ##
+% ##     hingewiesen wird, dass dieses Dokument ursprünglich von     ##
+% ##                                                                 ##
+% ##                        www.ei-studium.de                        ##
+% ##                                                                 ##
+% ##                             stammt.                             ##
+% ## Dies gilt insbesondere auch für alle daraus erstellten Dateien. ##
+% ##    Des Weiteren muss die Weitergabe dieser Dateien unter der    ##
+% ##                    gleichen Lizenz erfolgen.                    ##
+% #####################################################################
+% #####################################################################
+\documentclass[a4paper,twocolumn,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[top=2.0cm,bottom=1.5cm,left=1.0cm,right=1.0cm]{geometry}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{sectsty}
+\usepackage{colortbl}
+\usepackage{cancel}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage[pdfborder={0 0 0}]{hyperref}
+
+\setlist{itemsep=.01mm}
+\setenumerate{label=\emph{\arabic*})}
+\setlength{\columnsep}{1cm}
+\parindent 0mm
+
+\partfont{\Large}
+\sectionfont{\large \sc\bf}
+\subsectionfont{\normalsize}
+\subsubsectionfont{\small\textit}
+
+\pagestyle{fancy}
+\lhead[\leftmark]{Formelsammlung Mathematik 2 für EI}
+\chead[\leftmark]{\url{http://www.ei-studium.de}}
+\rhead[\leftmark]{Erstelldatum: \today}
+\lfoot[\leftmark]{Keine Garantie auf Vollständigkeit und Richtigkeit!}
+\cfoot[\leftmark]{}
+\rfoot[\leftmark]{\thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+\newcommand{\sollsein}{\stackrel{!}{=}}
+
+\begin{document}
+\tableofcontents
+\newpage
+
+\part{Mathematik 2}
+
+\section{Anwendung der Differential- und Integralrechnung}
+
+\subsection{Taylorentwicklung}
+Das $m$-te Taylorpolynom der Funktion $f$ an der Stelle $x_0$ ist
+\begin{equation*}
+T_m(x_0;x)=\sum\limits_{k=0}^{m}\frac{f^{(k)}(x_0)}{k!}\cdot (x-x_0)^k
+\end{equation*}
+Restglied:
+\begin{equation*}
+R_{m+1}(x_0;x)=f(x)-T_m(x_0;x)
+\end{equation*}
+\begin{equation*}
+R_{m+1}(x_0;x)=\frac{1}{m!}\int\limits_{x_0}^{x}(x-t)^m f^{(m+1)}(t)dt
+\end{equation*}
+Außerdem gibt es für jedes $x\in I$ ein $\xi_x\in (x_0;x)$ oder $\xi_x\in (x,x_0)$ mit
+\begin{equation*}
+R_{m+1}(x_0;x)=\frac{f^{(m+1)}(\xi_x)}{(m+1)!}(x-x_0)^{m+1}
+\end{equation*}
+Taylorformel für $h=x-x_0$:
+\begin{equation*}
+f(x_0+h)=\sum\limits_{k=0}^{m}\frac{f^{(k)}(x_0)}{k!}h^k+R_{m+1}(x_0;x_0+h)
+\end{equation*}
+mit
+\begin{equation*}
+R_{m+1}(x_0;x_0+h)=\frac{f^{(m+1)}(\xi_x)}{(m+1)!}h^{(m+1)}
+\end{equation*}
+Mit Landau-Notation gilt:
+\begin{equation*}
+R_{m+1}(x_0;x_0+h)=o(h^m)=O(h^{m+1})
+\end{equation*}
+Eine Taylorreihe konvergiert genau dann, wenn gilt:
+\begin{equation*}
+\lim\limits_{n\rightarrow\infty}R_n(x_0,x)=0
+\end{equation*}
+bzw. falls es zwei Konstanten $A,B>0$ gibt, sodass gilt:
+\begin{equation*}
+|f^{(n)}(x)|\leq A\cdot B^n\;\forall\;n\in\mathbb{N}, x\in I
+\end{equation*}
+
+\subsection{Landau-Symbole}
+\begin{equation*}
+f(x)=o(g(x))\;f\ddot{u}r\;x\rightarrow a
+\end{equation*}
+gilt genau dann, wenn auch
+\begin{equation*}
+\lim\limits_{x\rightarrow a}\left|\frac{f(x)}{g(x)}\right|=0
+\end{equation*}
+gilt.
+\begin{equation*}
+f(x)=O(g(x))\;f\ddot{u}r\;x\rightarrow a
+\end{equation*}
+gilt genau dann, wenn in einer Umgebung $(a-\epsilon, a+\epsilon)$ für eine Konstante $C>0$ gilt:
+\begin{equation*}
+|f(x)|\leq C\cdot |g(x)|\;f\ddot{u}r\;x\in (a-\epsilon,a+\epsilon)
+\end{equation*}
+bzw.
+\begin{equation*}
+\limsup\limits_{x\rightarrow a}\left|\frac{f(x)}{g(x)}\right|<\infty
+\end{equation*}
+
+\subsubsection{Rechenregeln}
+\begin{equation*}
+f=o(g)\Rightarrow f=O(g)
+\end{equation*}
+\begin{equation*}
+f_1=o(g),f_2=o(g)\Rightarrow f_1+f_2=o(g)
+\end{equation*}
+\begin{equation*}
+f_1=O(g),f_2=O(g)\Rightarrow f_1+f_2=O(g)
+\end{equation*}
+\begin{equation*}
+f_1=O(g_1), f_2=O(g)\Rightarrow f_1\cdot f_2=O(g_1\cdot g_2)
+\end{equation*}
+\begin{equation*}
+f_1=O(g_1),f_2=o(g_2)\Rightarrow f_1\cdot f_2 = o(g_1\cdot g_2)
+\end{equation*}
+
+\subsection{Fixpunktiteration}
+Jede Nullstellengleichung $f(x)=0$ kann man in der Form einer Fixpunktgleichung $g(x)=x$ darstellen, indem man $g(x)=f(x)+x$ setzt. Man kann versuchen, die unbekannte Lösung $x^*$ mit $g(x^*)=x^*$ wie folgt zu approximieren:\\
+Man betrachtet eine erste Näherung $x_0\in I$ und definiert eine Folge $x_n$ durch die rekursive Vorschrift:
+\begin{equation*}
+x_{n+1}=g(x_n)
+\end{equation*}
+Ist die Folge konvergent, so ist der Grenzwert ein Fixpunkt von $g$.\\\\
+\textbf{Banach'scher Fixpunktsatz:}\\
+Sei $g:I=[a,b]\rightarrow I$ eine differenzierbare Funktion (Selbstabbildung des Intervalls $I$) und es gebe eine Konstante $0\leq L\leq 1$ mit
+\begin{equation*}
+|g'(x)|\leq L\;f\ddot{u}r\; alle\;x\in I
+\end{equation*}
+Dann existiert genau eine Lösung $x^*$ der Fixpunktgleichung $g(x)=x$ und die Iteration
+\begin{equation*}
+x_0\in I, x_{n+1}=g(x_n)
+\end{equation*}
+konvergiert gegen $x^*$. Außerdem gelten folgende Abschätzungen:
+\begin{equation*}
+\underbrace{|x_n-x^*|\leq \frac{L^n}{1-L}|x_1-x_0|}_{A-Priori}\;und\;\underbrace{|x_n-x^*|\leq \frac{L}{1-L}|x_n-x_{n-1}|}_{A-Posteriori}
+\end{equation*}
+
+\subsection{Newton-Verfahren}
+Iterationsschritt:
+\begin{equation*}
+x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}
+\end{equation*}
+Konvergenztest:\\
+Sei $f:[a,b]\rightarrow\mathbb{R}$ eine zweimal stetig differenzierbare Funktion und $x^*\in (a,b)$ eine Nullstelle von $f$.
+\begin{equation*}
+m=\min\limits_{a\leq x\leq b}|f'(x)|>0
+\end{equation*}
+\begin{equation*}
+M=\max\limits_{a\leq x\leq b}|f''(x)|
+\end{equation*}
+Liegt der Startwert $x_0\in I$ hinreichend nahe bei der Nullstelle, d.h.
+\begin{equation*}
+|x_0-x^*|\leq \frac{2m}{M}
+\end{equation*}
+dann konvergiert das Newton-Verfahren gegen die Nullstelle $x^*$ und es gilt:
+\begin{equation*}
+|x^*-x_n|\leq \frac{M}{2m}|x^*-x_{n-1}|^2
+\end{equation*}
+
+\subsection{Kurven in $\mathbb{R}^n$}
+Sei $I=[a,b]$ ein Intervall. Eine stetige Funktion $k:I\rightarrow\mathbb{R}^n$ heißt Kurve im $\mathbb{R}^n$.
+\begin{enumerate}[label=$\bullet$]
+\item Der Punkt $k(a)\in\mathbb{R}^n$ heißt Anfangspunkt und $k(b)\in\mathbb{R}^n$ Endpunkt der Kurve
+\item Gilt $k(a)=k(b)$, so heißt die Kurve geschlossen.
+\end{enumerate}
+Eine Kurve $k:I\rightarrow\mathbb{R}^n$ heißt differenzierbar an der Stelle $t\in I$, falls alle Komponentenfunktionen $k_1,k_2,...,k_n:I\rightarrow\mathbb{R}$ an der Stelle $t$ differenzierbar sind. Somit lautet die Ableitung von $k$ an der Stelle $t$:
+\begin{equation*}
+k'(t)=(k_1'(t), k_2'(t),...,k_n'(t))^T
+\end{equation*}
+Eine Kurve $k:I\rightarrow\mathbb{R}^n$ heißt $C^1$-Kurve, falls die Funktion $k$ stetig differenzierbar ist.
+
+\subsubsection{Singuläre Punkte}
+Singuläre Punkte einer Kurve sind diejenigen Stellen, an denen gilt
+\begin{equation*}
+k'(t)=0
+\end{equation*}
+
+\subsubsection{Länge einer Kurve}
+\begin{equation*}
+L(k)=\int\limits_{a}^{b}||k'(t)||dt
+\end{equation*}
+
+\subsubsection{Umparametrisierung einer Kurve}
+Sei eine Kurve $k:I=[a,b]\rightarrow\mathbb{R}^n$ gegeben und sei $h:[c,d]\rightarrow[a,b]$ eine streng monoton wachsende Funktion mit $h(c)=a$ und $h(d)=b$. Wir definieren eine neue Kurve
+\begin{equation*}
+\overset{\sim}{k}:[c,d]\rightarrow\mathbb{R}^n, \overset{\sim}{k}(\tau)=k(h(\tau))
+\end{equation*}
+Die Kurve $\overset{\sim}{k}$ entsteht aus der Kurve $k$ durch Umparametrisierung.\\
+Eine Kurve $k:I\rightarrow\mathbb{R}^n$ heißt regulär, wenn gilt
+\begin{equation*}
+k'(t)\neq 0\;f\ddot{u}r\;alle\;t\in I
+\end{equation*}
+\textbf{Umparametrisierung nach der Bogenlänge:}\\
+Für eine reguläre Kurve $k:I\rightarrow\mathbb{R}^n$ definieren wir die Umparametrisierung der Kurve $k$ nach der Bogenlänge. Dafür betrachten wir die Funktion $s:I=[a,b]\rightarrow\mathbb{R}$, die für jedes $t$ die Bogenlänge des Kurvenstücks zwischen $k(a)$ und $k(t)$ beschreibt:
+\begin{equation*}
+s(t)=\int\limits_{a}^{t}||k'(\tau)||d\tau
+\end{equation*}
+Es gilt:
+\begin{equation*}
+s'(t)=||k'(t)||>0\;f\ddot{u}r\;alle\;t\in I
+\end{equation*}
+da die Kurve $k$ regulär ist. Somit ist die Funktion $s:[a,b]\rightarrow [0,L(k)]$ streng monoton steigend und es gibt eine (streng monoton steigende) Umkehrfunktion $s^{-1}:[0,L(k)]\rightarrow [a,b]$.\\
+Wir definieren die Umparametrisierung nach der Bogenlänge als
+\begin{equation*}
+\overset{\sim}{k}:[0,L(k)]\rightarrow\mathbb{R}^n,\;\overset{\sim}{k}=k(s^{-1}(\tau))
+\end{equation*}
+\begin{equation*}
+\Rightarrow ||\overset{\sim}{k}'(\tau)||=1
+\end{equation*}
+
+\subsubsection{Krümmung einer Kurve}
+Sei $k:I\rightarrow\mathbb{R}^n$ eine $C^1$-Kurve. Wir definieren den Tangenteneinheitsvektor $T(t)$ als
+\begin{equation*}
+T(t)=\frac{1}{||k'(t)||}k'(t)
+\end{equation*}
+Sei $k:I\rightarrow\mathbb{R}^n$ eine reguläre Kurve. Die Krümmung von $k$ an der Stelle $t$ ist gegeben als
+\begin{equation*}
+\kappa(t)=\frac{1}{s'(t)}||T'(t)||
+\end{equation*}
+Sei $k:I\rightarrow\mathbb{R}^2$ eine Kurve mit $k(t)=(x(t),y(t))$, so gilt:
+\begin{equation*}
+\kappa(t)=\frac{x'(t)y''(t)-y'(t)x''(t)}{[x'(t)^2+y'(t)^2]^{\frac{3}{2}}}
+\end{equation*}
+Ist die Kurve $k$ nach der Bogenlänge parametrisiert, so gilt $s'(t)=1$ und
+\begin{equation*}
+\overset{\sim}{\kappa}=x'(t)y''(t)-y'(t)x''(t)
+\end{equation*}
+
+\section{Differentialrechnung in $\mathbb{R}^n$: Skalarfelder}
+Ein Skalarfeld ist eine Funktion $f:\Omega\rightarrow\mathbb{R}$, wobei $\Omega\subset\mathbb{R}^n$.
+
+\subsection{Topologie}
+Sei $\Omega\subset\mathbb{R}^n$
+\begin{enumerate}[label=$\bullet$]
+\item Ein Punkt $x\in\Omega$ heißt \textbf{innerer Punkt} von $\Omega$, falls es eine offene Kugel $B_{\epsilon}(x)$ (Umgebung) gibt, die ganz in $\Omega$ liegt, d.h. $B_{\epsilon}\subset\Omega$.
+\item Die \textbf{Menge aller inneren Punkte} von $\Omega$ heißt das Innere von $\Omega$ und wird mit $int(\Omega)$ bezeichnet.
+\item Eine Menge $\Omega\subset\mathbb{R}^n$ heißt \textbf{offen}, falls $\Omega =int(\Omega)$ gilt.
+\item Ein Punkt $x\in\mathbb{R}^n$ heißt \textbf{Randpunkt} von $\Omega$, falls jede offene Kugel $B_r(x)$ sowohl Punkte aus $\Omega$ als auch Punkte, die nicht in $\Omega$ liegen, enthält
+\item Die \textbf{Menge aller Randpunkte} von $\Omega$ heißt der Rand von $\Omega$ und wird mit $\partial\Omega$ bezeichnet.
+\item Der \textbf{Abschluss} einer Menge $\Omega$ wird definiert als $\overline{\Omega}=\Omega+\partial\Omega$.
+\item Eine Menge $\Omega\subset\mathbb{R}^n$ heißt \textbf{abgeschlossen}, falls alle Randpunkte in der Menge $\Omega$ enthalten sind, d.h. $\partial\Omega\subset\Omega\Leftrightarrow\Omega=\overline{\Omega}$.
+\item Die Menge $\Omega\subset\mathbb{R}^n$ heißt \textbf{beschränkt}, wenn es eine Konstante $M>0$ gibt, sodass $||x||\leq M$ für alle $x\in\Omega$ gilt.
+\item Eine Menge $\Omega\subset\mathbb{R}^n$ ist \textbf{kompakt}, wenn sie beschränkt und abgeschlossen ist.
+\end{enumerate}
+Regeln:
+\begin{enumerate}[label=$\bullet$]
+\item Sei $A\subset\mathbb{R}^n$ offen, dann ist $\mathbb{R}^n\backslash A$ abgeschlossen.
+\item Sei $A\subset\mathbb{R}^n$ abgeschlossen, dann ist $\mathbb{R}^n\backslash A$ offen.
+\item Seien $A,B\subset\mathbb{R}^n$ offen, dann sind auch $A\cup B$ und $A\cap B$ offen.
+\item Seien $A,B\subset\mathbb{R}^n$ abgeschlossen, dann sind auch $A\cup B$ und $A\cap B$ abgeschlossen.
+\end{enumerate}
+
+\subsection{Folgen in $\mathbb{R}^n$}
+Wir betrachten Folgen $\{x^k\}\subset\mathbb{R}^n$ analog zu den Folgen in $\mathbb{R}$ oder in $\mathbb{C}$: $x^1,x^2,x^3,...$\\
+Ein Folgenglied $x^k\in\mathbb{R}^n$ hat dann die Form
+\begin{equation*}
+x^k=(x_1^k,x_2^k,...,x_n^k)^T \in\mathbb{R}^n
+\end{equation*}
+Ein Vektor $x\in\mathbb{R}^n$ heißt Grenzwert der Folge $\{x^k\}\subset\mathbb{R}^n$, wenn
+\begin{equation*}
+\lim\limits_{k\rightarrow\infty}||x-x^k|| =0
+\end{equation*}
+erfüllt ist. Man schreibt dann
+\begin{equation*}
+\lim\limits_{k\rightarrow\infty}x^k=x\;oder\;x^k\rightarrow x, k\rightarrow\infty
+\end{equation*}
+
+\subsection{Stetigkeit von Skalarfeldern}
+Sei $f:\Omega\subset\mathbb{R}^n\rightarrow\mathbb{R}$ ein Skalarfeld und sei $y\in\Omega$.\\
+$f$ ist stetig an der Stelle $y$, wenn gilt:
+\begin{equation*}
+\lim\limits_{x\rightarrow y}f(x)=f(y)
+\end{equation*}
+Das bedeutet, dass für jede Folge $\{x^k\}\subset\Omega$ mit $x^k\rightarrow y$ die Folge der Funktionswerte $\{f(x^k)\}\subset\mathbb{R}$ gegen $f(y)$ konvergieren muss.\\
+Sei $\Omega\subset\mathbb{R}^n$ eine kompakte Menge und sei $f:\Omega\rightarrow\mathbb{R}$ ein stetiges Skalarfeld, dann nimmt $f$ auf $\Omega$ sein Minimum und sein Maximum an. D.h. es gibt Punkte $x_m,x_M\in\Omega$ mit
+\begin{equation*}
+f(x_m)=\min\limits_{x\in\Omega}f(x)\;und\;f(x_M)=\max\limits_{x\in\Omega}f(x)
+\end{equation*}
+
+\subsection{Partielle Ableitung}
+Bei der Berechnung der partiellen Ableitung nach $x_i$ werden alle anderen Variablen festgehalten, d.h. sie werden als Konstanten betrachtet:
+\begin{equation*}
+\frac{\partial f}{\partial x_i}(x)=\lim\limits_{h\rightarrow 0}\frac{f(x_1,...,x_{i-1},x_i+h,x_{i+1},...,x_n)-f(x_1,...,x_n)}{h}
+\end{equation*}
+Sei $\Omega\subset\mathbb{R}^n$ eine offene Menge, $f:\Omega\rightarrow\mathbb{R}$ ein Skalarfeld und $x\in\Omega$. Die Funktion $f$ heißt partiell differenzierbar an der Stelle $x$, wenn alle partiellen Ableitungen an der Stelle $x$ existieren. $f$ ist stetig differenzierbar, falls alle partiellen Ableitungen stetige Skalarfelder definieren. Die Menge aller stetigen differenzierbaren Funktionen bezeichnet man mit $C^1(\Omega)$.
+
+\subsection{Gradient}
+Der Gradient an der Stelle $x$ wird definiert als
+\begin{equation*}
+\nabla f(x)=\begin{pmatrix}\frac{\partial f}{\partial x_1}(x) \\ \frac{\partial f}{\partial x_2}(x) \\ ... \\ \frac{\partial f}{\partial x_n}(x)\end{pmatrix}\in\mathbb{R}^n
+\end{equation*}
+Rechenregeln:
+\begin{equation*}
+\nabla (f+g)(x)=\nabla f(x)+\nabla g(x)
+\end{equation*}
+\begin{equation*}
+\nabla (\lambda f)(x)=\lambda\nabla f(x)
+\end{equation*}
+\begin{equation*}
+\nabla(fg)(x)=g(x)\nabla f(x)+f(x)\nabla g(x)
+\end{equation*}
+\begin{equation*}
+\nabla \left(\frac{f}{g}\right)(x)=\frac{g(x)\nabla f(x)-f(x)\nabla g(x)}{g(x)^2}
+\end{equation*}
+
+\subsection{Totale (Fréchet-) Differenzierbarkeit}
+Sei $\Omega\subset\mathbb{R}^n$ eine offene Menge. Ein Skalarfeld $f:\Omega\rightarrow\mathbb{R}$ heißt total differenzierbar oder Fréchet-differenzierbar an der Stelle $x\in\Omega$, falls es einen Vektor $b\in\mathbb{R}^n$ gibt, sodass die Darstellung
+\begin{equation*}
+f(x+d)=f(x)+b^Td+o(||d||)
+\end{equation*}
+für $d\in\mathbb{R}^n$ und $||d||\rightarrow 0$ gilt.\\
+Ist das Skalarfeld an der Stelle $x$ Fréchet-differenzierbar, so ist $f$ auch partiell differenzierbar und $b=\nabla f(x)$ und $f$ ist an dieser Stelle stetig.\\
+Ein Skalarfeld ist Fréchet-differenzierbar in $x_0$, falls dort alle partiellen Ableitungen existieren und das Skalarfeld stetig ist bzw. wenn gilt:
+\begin{equation*}
+\lim\limits_{d\rightarrow 0}\frac{f(x_0+d)-f(x_0)-(\nabla f)^T d}{||d||}=0
+\end{equation*}
+Frechet-Differenzierbarkeit kann auch widerlegt werden, indem man eine Folge findet, die für $n\rightarrow\infty$ nicht gegen die Stelle $x_0$ konvergiert.
+
+\subsection{Richtungsableitung}
+Sei $\Omega\subset\mathbb{R}^n$ eine offene Menge und $f:\Omega\rightarrow\mathbb{R}$ ein Skalarfeld. Die Richtungsableitung im Punkt $x$ in Richtung $d\in\mathbb{R}^n$ wird definiert als
+\begin{equation*}
+\partial_d f(x)=\lim\limits_{h\rightarrow 0}\frac{f(x+hd)-f(x)}{h}
+\end{equation*}
+Ist $f$ Fréchet-differenzierbar im Punkt $x\in\Omega$, dann existiert für jede Richtung $d\in\mathbb{R}^n$ die Richtungsableitung $\partial_d f(x)$ und es gilt
+\begin{equation*}
+\partial_d f(x)=\nabla f(x)^T d
+\end{equation*}
+
+\subsection{Höhere partielle Ableitungen}
+\begin{equation*}
+\partial_{x_j}\partial_{x_i}f(x)=\lim\limits_{h\rightarrow 0}\frac{\partial_{x_i}f(x+he_j)-\partial_{x_i}f(x)}{h}
+\end{equation*}
+Wird zweimal nach $x_i$ abgeleitet, so schreib man
+\begin{equation*}
+\partial_{x_i}\partial_{x_i}f(x)=\frac{\partial^2}{\partial x_i^2}f(x)=\partial_{x_i}^2 f(x)
+\end{equation*}
+Die Menge aller zweimal stetig differenzierbaren Funktionen bezeichnet man mit $C^2(\Omega)$ usw.\\
+Sei $f:\Omega\rightarrow\mathbb{R}$ und $f\in C^2(\Omega)$, dann gilt
+\begin{equation*}
+\partial_i \partial_j f(x)=\partial_j \partial_i f(x)
+\end{equation*}
+für alle $1\leq i,j\leq n$ und für alle $x\in\Omega$.
+
+\subsection{Hessematrix}
+Sei $f:\Omega\subset\mathbb{R}^n\rightarrow\mathbb{R}$ ein zweimal partiell differenzierbares Skalarfeld, dann ist die Hesse-Matrix $H_f(x)$ definiert als
+\begin{equation*}
+H_f(x)=\begin{pmatrix}\partial_{x_1}\partial_{x_1}f(x) & ... & \partial_{x_n}\partial_{x_1}f(x) \\ \partial_{x_1}\partial_{x_2}f(x) & ... & \partial_{x_n}\partial_{x_2}f(x) \\ \vdots & \ddots & \vdots \\ \partial_{x_1}\partial_{x_n}f(x) & ... & \partial_{x_n}\partial_{x_n}f(x)\end{pmatrix}
+\end{equation*}
+Des Weiteren gilt:
+\begin{equation*}
+H_f(x)=J_{\nabla f}(x)
+\end{equation*}
+
+\subsection{Taylorentwicklung für Skalarfelder}
+Das Taylorpolynom $m$-ten Grades am Punkt $a$ lautet:
+\begin{equation*}
+\begin{split}T_m(a;a+h)=f(a)+\nabla f(a)^T h+\frac{1}{2}h^TH_f(a) h+... \\ = f(a)+\sum\limits_{i=1}^{n}\partial_{x_i}f(a)h_i+\frac{1}{2!}\sum\limits_{i,j=1}^{n}\partial_{x_i}\partial_{x_j}f(a)h_ih_j \\ +\frac{1}{3!}\sum\limits_{i,j,k=1}^{n}\partial_{x_i}\partial_{x_j}\partial_{x_k}f(a)h_ih_jh_k+...\end{split}
+\end{equation*}
+mit $h_i=x_i-a_i$\\\\
+Falls das Skalarfeld $f$ bereits ein Polynom $n$-ten Grades oder kleiner ist, d.h. falls $f\in P_n$, dann folgt
+\begin{equation*}
+T_n(a;x)=f(x)
+\end{equation*}
+Für das Restglied gilt:\\
+\begin{equation*}
+\begin{split}R_{m+1}(a;a+h)=\frac{1}{m!}\cdot \int\limits_{0}^{1}(1-t)^mg^{(m+1)}(t)dt \\ = \frac{1}{(m+1)!}g^{(m+1)}(\xi)=O(||h||^{m+1})\end{split}
+\end{equation*}
+mit $\xi\in (0,1)$.
+
+\section{Lineare Abbildungen}
+
+\subsection{Definitionen}
+\begin{enumerate}[label=$\bullet$]
+\item Eine \textbf{Abbildung (eine Funktion)} $f:X\rightarrow Y$ zwischen den Mengen $X$ und $Y$ ist eine Zuordnung, bei der jedem Element $x\in X$ ein Element $y =f(x)\in Y$ zugeordnet wird. Man schreibt:
+\begin{equation*}
+f:X\rightarrow Y, x\rightarrow y = f(x)
+\end{equation*}
+\item Das \textbf{Bild} der Funktion $f:X\rightarrow Y$ wird definiert als
+\begin{equation*}
+Bild(f)=\{y\in Y|y=f(x),x\in X\}
+\end{equation*}
+\item Eine Funktion heißt \textbf{surjektiv}, falls das Bild mit der Zielmenge $Y$ übereinstimmt.
+\item Eine Funktion heißt \textbf{injektiv}, falls keine zwei verschiedenen Element aus $X$ auf dasselbe Element aus $Y$ abgebildet werden.
+\item Eine Funktion heißt \textbf{bijektiv}, falls sie injektiv und surjektiv ist. Eine bijektive Funktion besitzt eine Umkehrfunktion, die ebenfalls bijektiv ist.
+\item Eine Abbildung $f:V\rightarrow W$ zwischen zwei Vektorräumen $V$ und $W$ heißt \textbf{linear}, falls folgende Eigenschaft erfüllt ist:
+\begin{equation*}
+f(\alpha x+y)=\alpha f(x)+f(y)\;f\ddot{u}r\;alle\;x,y\in V\;und\;\alpha\in\mathbb{R}
+\end{equation*}
+\item Der \textbf{Kern} von $f$ wird definiert als
+\begin{equation*}
+Kern(f)=\{x\in V|f(x)=0\}
+\end{equation*}
+\item Der \textbf{Rang} einer linearen Abbildung $f$ wird definiert als
+\begin{equation*}
+Rang(f)=dim(Bild(f))
+\end{equation*}
+\item Eine Funktion $f:V\rightarrow W$ zwischen zwei Vektorräumen $V$ und $W$ heißt \textbf{affinlinear}, wenn $f(x)=g(x)+a$ gilt, wobei $g:V\rightarrow W$ eine lineare Abbildung und $a\in W$ ist.
+\item Eine lineare Abbildung $f:V\rightarrow W$ ist genau dann surjektiv, wenn $Bild(f)=W$ und genau dann injektiv, wenn $Kern(f)=0$.
+\item \textbf{Dimensionsformel:}
+\begin{equation*}
+dim(Bild(f))+dim(Kern(f))=dim(V)
+\end{equation*}
+\item Falls $f:V\rightarrow V:\;f$ ist injektiv $\Leftrightarrow f$ ist surjektiv
+\end{enumerate}
+
+\subsection{Dualraum}
+\begin{enumerate}[label=$\bullet$]
+\item Seien $V$ und $W$ zwei endlichdimensionale Vektorräume. Die Menge aller linearen Abbildungen von $V$ nach $W$ wird mit
+\begin{equation*}
+{\cal L}(V,W)=\{f:V\rightarrow W|f\;ist\;linear\}
+\end{equation*}
+bezeichnet.
+\item Sei $V$ ein endlichdimensionaler Raum. Die Menge
+\begin{equation}
+V^*={\cal L}(V,\mathbb{R})
+\end{equation}
+aller linearen Abbildungen von $V$ nach $\mathbb{R}$ nennt man Dualraum von $V$. Die linearen Abbildungen von $V$ nach $\mathbb{R}$ werden lineare Funktionale genannt.\\
+Jedes lineare Funktional $f\in V^*$ kann man durch einen Zeilenvektor $w_f\in \mathbb{R}^{1\times n}$ darstellen: $f(v)=w_f\cdot v$
+\item Sei $V$ ein endlichdimensionaler Vektorraum. Der Vektorraum $V^*$ ist auch endlichdimensional und es gilt
+\begin{equation*}
+dim(V^*)=dim(V)
+\end{equation*}
+\item Sei $\{v_1,v_2,...,v_n\}\subset V$ eine Basis von $V$. Dann bildet die Menge $\{v_1^*, v_2^*,...,v_n^*\}\subset V^*$ mit der Eigenschaft
+\begin{equation*}
+v_i^*(v_j)=\delta_{ij}=\begin{cases}1 & falls\;i=j \\ 0 & sonst\end{cases}
+\end{equation*}
+eine Basis von $V*$. Diese Basis nennt man dual zu der Basis $\{v_1,v_2,...,v_n\}$.
+\end{enumerate}
+
+\subsection{Matrixdarstellung}
+Sei $f:V\rightarrow W$ eine lineare Abbildung, $B=\{b_1,b_2,...,b_n\}$ eine Basis von $V$ und $C=\{c_1,c_2,...,c_m\}$ eine Basis von $W$, dann kann man die Bilder der Basisvektoren von $V$ in der Basis von $W$ darstellen:
+\begin{equation*}
+f(b_j)=\sum\limits_{i=1}^{m}a_{ij}c_i
+\end{equation*}
+Die Koeffizienten $a_{ij}$ in der oberen Darstellung bilden die sogenannte Abbildungsmatrix $A\in \mathbb{R}^{m\times n},A=(a_{ij})$ der Abbildung $f$ bezüglich der Basen $B$ von $V$ und $C$ von $W$.\\
+In der $j$-ten Spalte der Abbildungsmatrix stehen die Koordinaten des Bildes $f(b_j)$ des $j$-ten Basiselements $b_j$ der Basis $C$.\\\\
+Falls $C$ die Einheitsbasis ist, gilt
+\begin{equation*}
+A=(f(b_1),f(b_2),...,f(b_n))
+\end{equation*}
+Hieraus kann $A'$ bezüglich einer anderen Ausgangsbasis $C'$ folgendermaßen berechnet werden:
+\begin{equation*}
+(C'|A)\rightsquigarrow (I_n|A')
+\end{equation*}
+
+\subsection{Transformationsmatrix}
+Sei $B=(b_1,b_2,...,b_n)$ die Ausgangsbasis des Raumes $V$ und $B'=(b_1',b_2',...,b_n')$ eine neue Basis. Die Vektoren der neuen Basis haben eine eindeutige Darstellung in der alten Basis:
+\begin{equation*}
+b_j'=a_{1j}b_1+a_{2j}b_2+...+a_{nj}b_n
+\end{equation*}
+Man definiert die sog. Transformationsmatrix $T_{B'}^B \in \mathbb{R}^{n\times n}$ wie folgt:
+\begin{equation*}
+T_{B'}^B =(a_{ij})
+\end{equation*}
+D.h. in der $j$-ten Spalte der Matrix $T_{B'}^B$ stehen die Koordinaten des $j$-ten Vektors $b_j'$ der neuen Basis bezüglich der alten Basis $B$. Es gilt außerdem:
+\begin{equation*}
+(T_{B'}^B)^{-1}=T_B^{B'}
+\end{equation*}
+Diese Transformationsmatrix kann folgendermaßen berechnet werden:
+\begin{equation*}
+(B|B')\rightsquigarrow (I_n|T_{B'}^B)
+\end{equation*}
+bzw.
+\begin{equation*}
+(B|B')\rightsquigarrow (T_B^{B'}|I_n)
+\end{equation*}
+Möchte man einen Vektor $x$ in einen neuen Vektor $x'$ bezüglich der neuen Basis umrechnen und umgekehrt, so gilt:
+\begin{equation*}
+x'=T_B^{B'}x
+\end{equation*}
+\begin{equation*}
+x=T_{B'}^B x'
+\end{equation*}
+Die Abbildungsmatrix $A$ einer Funktion $f$ bezüglich der Eingangsbasis $B=(b_1,b_2,...,b_n)$ und der Ausgangsbasis $C=(c_1,c_2,...,c_n)$ kann in eine Abbildungsmatrix $\overset{\sim}{A}$ bezüglich der neuen Basen $B'$ und $C'$ wie folgt berechnet werden:
+\begin{equation*}
+\overset{\sim}{A}=(T_{C'}^C)^{-1}AT_{B'}^B
+\end{equation*}
+
+\subsection{Matrixnormen}
+Normen auf $\mathbb{R}^{m\times n}$ müssen folgende Bedingungen erfüllen:
+\begin{enumerate}[label=$\bullet$]
+\item Definitheit:
+\begin{equation*}
+||A|| \geq 0\;f\ddot{u}r\;alle\;A\in\mathbb{R}^{m\times n}\;und
+\end{equation*}
+\begin{equation*}
+||A||=0\Leftrightarrow A=0
+\end{equation*}
+\item Homogenität:
+\begin{equation*}
+||\alpha A|| =|\alpha|\cdot ||A||\;f\ddot{u}r\;alle\;A\in\mathbb{R}^{m\times n}, \alpha\in\mathbb{R}
+\end{equation*}
+\item Dreiecksungleichung:
+\begin{equation*}
+||A+B||\leq ||A||+||B||\;f\ddot{u}r\;alle\;A,B\in\mathbb{R}^{m\times n}
+\end{equation*}
+\end{enumerate}
+\textbf{Frobenius-Norm:}\\
+\begin{equation*}
+||A||_F=\sqrt{\sum\limits_{i=1}^{m}\sum\limits_{j=1}^{n}a_{ij}^2}
+\end{equation*}
+Eine Norm auf $\mathbb{R}^{n\times n}$ heißt \textbf{submultiplikativ}, falls für alle $A,B\in\mathbb{R}^{n\times n}$ gilt:
+\begin{equation*}
+||AB||\leq ||A||\cdot ||B||
+\end{equation*}
+Eine Matrizennorm heißt \textbf{verträglich} mit einer Vektornorm $||.||_V$ auf $\mathbb{R}^n$ falls gilt:
+\begin{equation*}
+||Ax||_V\leq ||A||\cdot ||x||_V\;f\ddot{u}r\;alle\;A\in\mathbb{R}^{n\times n},x\in\mathbb{R}^n
+\end{equation*}
+Die von $||.||$ induzierte Matrizennorm ist gegeben als
+\begin{equation*}
+||A||=\sup\limits_{x\in\mathbb{R}^n,x\neq 0}\frac{||Ax||_V}{||x||_V}
+\end{equation*}
+(natürliche Matrizennorm) mit den Eigenschaften:
+\begin{enumerate}[label=$\bullet$]
+\item Diese Matrizennorm ist mit der entsprechenden Vektornorm verträglich.
+\item Diese Matrizennorm ist submultiplikativ
+\item Es gilt:
+\begin{equation*}
+||A||=\sup\limits_{x\in\mathbb{R}^n,||x||_v=1}||Ax||_V
+\end{equation*}
+\end{enumerate}
+Die von der \textbf{Maximumsnorm} $||.||_{\infty}$ induzierte Matrizennorm ist die ''maximale Zeilensumme''.
+\begin{equation*}
+||A||_{\infty}=\max\limits_{1\leq i\leq n}\sum\limits_{j=1}^{n}|a_{ij}|
+\end{equation*}
+Die von der \textbf{$l_1$-Norm} $||.||_1$ induzierte Matrizennorm ist die ''maximale Spaltensumme'':
+\begin{equation*}
+||A||_1=\max\limits_{1\leq j\leq n}\sum\limits_{i=1}^{n}|a_{ij}|
+\end{equation*}
+
+\section{Differentialrechnung in $\mathbb{R}^n$: Vektorfelder}
+Eine Funktion $f:\Omega\subset \mathbb{R}^n\rightarrow\mathbb{R}^m$ heißt Vektorfeld. Ein Vektorfeld $f$ besteht aus $m$ Skalarfeldern, die man Komponentenfuntionen $f_i:\Omega\rightarrow\mathbb{R}$ nennt. Ein Punkt (Vektor) $x\in\Omega\subset\mathbb{R}^n$ wird auf einen Punkt $f(x)\in\mathbb{R}^m$ durch
+\begin{equation*}
+f(x)=\begin{pmatrix}f_1(x) \\ f_2(x) \\ ... \\ f_m(x)\end{pmatrix}
+\end{equation*}
+abgebildet. Die Begriffe des Grenzwertes und der Stetigkeit können Komponentenweise definiert werden.
+
+\subsection{Differenzierbarkeit von Vektorfeldern}
+Ein Vektorfeld $f:\Omega\subset\mathbb{R}^n\rightarrow\mathbb{R}^m$ heißt \textbf{stetig} an der Stelle $x_0\in\Omega$, falls alle Komonentenfunktionen $f_i:\Omega\rightarrow\mathbb{R}$ an der Stelle $x_0$ stetig sind.\\
+Das Vektorfeld ist (partiell) an der Stelle $x_0$ \textbf{differenzierbar}, falls alle Komponentenfunktionen an der Stelle $x_0$ differenzierbar sind.\\
+Sei $\Omega\in\mathbb{R}^n$ eine offene Menge. Ein Vektorfeld heißt \textbf{stetig differenzierbar} auf $\Omega$, wenn alle Komponentenfunktionen auf $\Omega$ stetig differenzierbar sind. Man schreibt dann $f\in C^1(\Omega)$.
+
+\subsection{Jacobimatrix}
+Sei $f:\Omega\subset\mathbb{R}^n\rightarrow\mathbb{R}^m$ ein Vektorfeld, das an der Stelle $x\in \Omega$ partiell differenzierbar ist. Die Jacobi-Matrix oder Funktionalmatrix $J_f(x)\in\mathbb{R}^{m\times n}$ wird definiert als:
+\begin{equation*}
+J_f(x)=\begin{pmatrix}\partial_1 f_1(x) & \partial_2 f_1(x) & ... & \partial_n f_1(x) \\ \partial_1 f_2(x) & \partial_2 f_2(x) & ... & \partial_n f_2(x) \\ \vdots & \vdots & \ddots & \vdots \\ \partial_1 f_m(x) & \partial_2 f_m(x) & ... & \partial_n f_m(x)\end{pmatrix}
+\end{equation*}
+Die Zeilen der Jacobi-Matrix sind also die transponierten Gradientenfunktionen:
+\begin{equation*}
+J_f(x)=\begin{pmatrix}\nabla f_1(x)^T \\ \nabla f_2(x)^T \\ \vdots \\ \nabla f_m(x)^T\end{pmatrix}
+\end{equation*}
+Der $i$-te Spaltenvektor ist der Tangentialvektor zu der $i$-ten Koordinatenlinie.\\\\
+
+\subsection{Rechenregeln}
+\begin{enumerate}[label=$\bullet$]
+\item Seien $f,g:\Omega\subset\mathbb{R}^n\rightarrow\mathbb{R}^m$ zwei differenzierbare Vektorfelder, dann ist die Linearkombination $\alpha f+\beta g$ mit $\alpha,\beta\in\mathbb{R}$ auch differenzierbar und es gilt:
+\begin{equation*}
+J_{\alpha f+\beta g}(x)=\alpha J_f(x)+\beta J_g(x)
+\end{equation*}
+\item Seien $f,g:\Omega\subset\mathbb{R}^n\rightarrow\mathbb{R}^m$ zwei differenzierbare Vektorfelder, dann ist das Skalarfeld
+\begin{equation*}
+h:\Omega\rightarrow\mathbb{R}\;mit\;h(x)=f(x)^Tg(x)
+\end{equation*}
+differenzierbar und es gilt:
+\begin{equation*}
+J_h(x)=g(x)^TJ_f(x)+f(x)^TJ_g(x)
+\end{equation*}
+\begin{equation*}
+\nabla h(x)=J_h(x)^T=J_f(x)^Tg(x)+J_g(x)^T f(x)
+\end{equation*}
+\end{enumerate}
+
+\subsection{Frèchet-Differenzierbarkeit}
+Sei $\Omega\subset\mathbb{R}^n$ eine offene Menge. Ein Vektorfeld $f:\Omega\rightarrow \mathbb{R}^m$ heißt Frèchet-differenzierbar (oder total differenzierbar) an der Stelle $x\in\Omega$, falls es eine lineare Abbildung $T:\mathbb{R}^n\rightarrow\mathbb{R}^m$ gibt, sodass folgende Darstellung erfüllt ist:
+\begin{equation*}
+f(x+h)=f(x)+T(h)+o(||h||)
+\end{equation*}
+für $||h||\rightarrow 0$.\\
+Ist das Vektorfeld $f:\Omega\subset\mathbb{R}^n\rightarrow\mathbb{R}^m$ an der Stelle $x\in\Omega$ Frèchet-differenzierbar, so folgt für die lineare Abbildung $T$ die Darstellung
+\begin{equation*}
+T(h)=J_f(x)h
+\end{equation*}
+Das Vektorfeld ist genau dann Frèchet-differenzierbar, wenn alle Komponentenfunktionen Frèchet-differenzierbar sind.\\
+Für die Frèchet-Ableitung schreibt man oft $Df(x)$ und meint die lineare Abbildung $Df(x):\mathbb{R}^n\rightarrow\mathbb{R}^m$. Die Jacobi-Matrix ist die Abbildungsmatrix dieser Abbildung bezüglich der Standardbasis. Es gilt:
+\begin{equation*}
+Df(x)(h)=J_f(x)h\;\;(totale\;Ableitung)
+\end{equation*}
+$f$ ist auf ganz $\Omega$ Frèchet-differenzierbar, falls gilt
+\begin{equation*}
+\Omega\subset\mathbb{R}^n\;offen\;und\;f\in C^1(\Omega)
+\end{equation*}
+
+\subsection{Kettenregel}
+Seien $\Omega\subset\mathbb{R}^n,D\subset\mathbb{R}^m$ offene Mengen und $f:\Omega\rightarrow\mathbb{R}^m, g:D\rightarrow\mathbb{R}^l$ zwei Vektorfelder. Seien das Vektorfeld $f$ an der Stelle $x\in\Omega$ und das Vektorfeld $g$ an der Stelle $y=f(x)\in D$ Frèchet-differenzierbar, dann ist auch die Komposition $h=g\circ f$ an der Stelle $x$ Frèchet-differenzierbar und es gilt:
+\begin{equation*}
+Dh(x)=Dg(f(x))\circ Df(x)
+\end{equation*}
+\begin{equation*}
+J_h(x)=J_g(f(x))J_f(x)
+\end{equation*}
+Für die partiellen Ableitungen folgt:
+\begin{equation*}
+\partial_j h_i(x)=\sum\limits_{k=1}^{m}\partial_k g_i(f(x))\partial_j f_k(x)
+\end{equation*}
+
+\subsection{Laplace-Operator}
+Für ein zweimal stetig differenzierbares Skalarfeld $f:\Omega\subset\mathbb{R}^n\rightarrow\mathbb{R}$ definiert man den Laplace-Operator
+\begin{equation*}
+\Delta f(x)=\sum\limits_{i=1}^{n}\partial_i^2 f(x)
+\end{equation*}
+
+\subsection{Divergenz}
+Für ein Vektorfeld $f:\Omega\subset\mathbb{R}^n\rightarrow\mathbb{R}^n$ definiert man die Divergenz
+\begin{equation*}
+\nabla\cdot f(x)=div(f(x))=\sum\limits_{i=1}^{n}\partial_i f_i(x)
+\end{equation*}
+
+\subsection{Rotation}
+Für ein Vektorfeld $f:\Omega\subset\mathbb{R}^3\rightarrow\mathbb{R}^3$ definiert man die Rotation
+\begin{equation*}
+\nabla\times f(x)=rot(f(x))=\begin{pmatrix}\partial_2 f_3(x)-\partial_3 f_2(x) \\ \partial_3 f_1(x)-\partial_1 f_3(x) \\ \partial_1 f_2(x)- \partial_2 f_1(x))\end{pmatrix}
+\end{equation*}
+
+\subsection{Besondere Zusammenhänge}
+\begin{enumerate}[label=$\bullet$]
+\item Sei $f:\Omega\subset\mathbb{R}^n\rightarrow\mathbb{R}$ ein zweimal stetig differenzierbares Skalarfeld, dann gilt:
+\begin{equation*}
+\nabla\nabla f(x)=\Delta f(x)
+\end{equation*}
+\item Für ein zweimal stetig differenzierbares Skalarfeld $f:\Omega\subset\mathbb{R}^3\rightarrow\mathbb{R}$ gilt:
+\begin{equation*}
+rot(\nabla f)=0
+\end{equation*}
+\item Für ein zweimal stetig differenzierbares Vektorfeld $g:\Omega\subset\mathbb{R}^3\rightarrow\mathbb{R}^3$ gilt:
+\begin{equation*}
+div(rot(g))=0
+\end{equation*}
+\end{enumerate}
+
+\subsection{Orthogonale krummlinige Koordinaten}
+Siehe Formelsammlung (z.B. Springer)\\\\
+Eine Koordinatentransformation (für othogonale Koordinaten) kann auch mittels Matrizenmultiplikation durchgeführt werden.\\
+Seien die Vektoren $\overset{\sim}{g}(x), \hat{g}(x)\in\mathbb{R}^3$ mit\\
+$\overset{\sim}{g}(x)$: neue Eingangsbasis, kartesische Ausgangsbasis\\
+$\hat{g}(x)$: neue Ein- und Ausgangsbasis\\\\
+Dann gilt:
+\begin{equation*}
+\hat{g}(x)=B^T\cdot \overset{\sim}{g}(x)
+\end{equation*}
+mit den Matrizen
+\begin{enumerate}[label=$\bullet$]
+\item Zylinderkoordinaten $(r,\varphi,z)$
+\begin{equation*}
+\begin{matrix}B=\left(\begin{matrix}\;\\ \; \\ \;\end{matrix}\right.\underbrace{\begin{matrix}\cos(\varphi) \\ \sin(\varphi) \\ 0\end{matrix}}_{e_r} & \underbrace{\begin{matrix}-\sin(\varphi) \\ \cos(\varphi) \\ 0\end{matrix}}_{e_{\varphi}} & \underbrace{\begin{matrix}0 \\ 0 \\ 1\end{matrix}}_{e_z}\left.\begin{matrix}\;\\ \; \\ \;\end{matrix}\right)\end{matrix}
+\end{equation*}
+\item Kugelkoordinaten $(r,\varphi,\theta)$
+\begin{equation*}
+\begin{matrix}B=\left(\begin{matrix}\;\\ \; \\ \;\end{matrix}\right.\underbrace{\begin{matrix}\cos(\varphi)\sin(\theta) \\ \sin(\varphi)\sin(\theta) \\ \cos(\theta)\end{matrix}}_{e_r} & \underbrace{\begin{matrix}-\sin(\varphi) \\ \cos(\varphi) \\ 0\end{matrix}}_{e_{\varphi}} & \underbrace{\begin{matrix}\cos(\varphi)\cos(\theta) \\ \sin(\varphi)\cos(\theta) \\ -\sin(\theta)\end{matrix}}_{e_{\theta}}\left.\begin{matrix}\;\\ \; \\ \;\end{matrix}\right)\end{matrix}
+\end{equation*}
+\end{enumerate}
+
+\subsection{Implizite Funktionen}
+Eine implizite Funktion ist gegeben durch $f(x,y,...)=0$.\\
+Sei $D\in\mathbb{R}^2$ offen und $f:D\rightarrow\mathbb{R}$ stetig differenzierbar. Sei der Punkt $(x_0,y_0)\in D$ derart gegeben, dass
+\begin{equation*}
+f(x_0;y_0)=0\;und\;\partial_y f(x_0;y_0)\neq 0
+\end{equation*}
+(Funktion auflösbar nach $x$, falls $\partial_x f\neq 0)$\\
+Dann gibt es zwei offene Intervalle $I\subset \mathbb{R}$ mit Mittelpunkt $x_0$ und $K\subset\mathbb{R}$ mit Mittelpunkt $y_0$, sodass gilt
+\begin{enumerate}[label=$\bullet$]
+\item $\mathbb{R}=I\times K\subset D$ und $\partial_y f(x,y)\neq 0$ für alle $(x,y)\in\mathbb{R}$
+\item Durch $f(x,y)=0$ ist auf $I$ eindeutig eine differenzierbare Funktion $g:I\rightarrow K$ implizit definiert mit
+\begin{equation*}
+f(x,g(x))=0\;f\ddot{u}r\;alle\;x\in I
+\end{equation*}
+Die Ableitung von $g$ ist gegeben als
+\begin{equation*}
+y'=g'(x)=-\frac{\partial_x f(x,g(x))}{\partial_y f(x,g(x))}\;f\ddot{u}r\;alle\;x\in I
+\end{equation*}
+Die zweite Ableitung von $g$ ist gegeben als
+\begin{equation*}
+\begin{split}
+y''=g''(x)=-\left[\frac{\partial_x^2 f(x,g(x))+2\partial_y \partial_x f(x,g(x))g'(x)}{\partial_y f(x,g(x))}\right. \\ \left.+\frac{\partial_y^2 f(x,g(x))(g'(x))^2}{\partial_y f(x,g(x))}\right]\end{split}
+\end{equation*}
+\end{enumerate}
+Sei $f(x,y,z)=0$ mit $z=g(x,y)$. Dann gilt:
+\begin{equation*}
+\nabla g(x,y)=\begin{pmatrix}-\frac{\partial_x f(x,y,z)}{\partial_z f(x,y,z)} \\ -\frac{\partial_y f(x,y,z)}{\partial_z f(x,y,z)}\end{pmatrix}
+\end{equation*}
+Außerdem gilt:\\
+Der Tangentialvektor steht senkrecht zum Gradienten.\\\\
+Sei $f:\mathbb{R}^{k+m}\rightarrow\mathbb{R}^m$ ein stetig differenzierbares \textbf{Vektorfeld} und $f(z)=0,\;\;z\in\mathbb{R}^{k+m}$.\\
+Man kann jeden Vektor $z\in\mathbb{R}^{k+m}$ als ein Paar $z=(x,y)$ mit $x\in\mathbb{R}^k$ und $y\in\mathbb{R}^m$ schreiben. In Analogie zu dem eindimensionalen Fall sucht man ein Vektorfeld $g:\mathbb{R}^k\rightarrow\mathbb{R}^m$ mit $f(x,g(x))=0$.\\
+Die Bedingung für die Existenz einer solchen implizit definierten Funktion in einer Umgebung der Stelle $z_0=(x_0,y_0)$ mit $f(z_0)=0$ ist die folgende: Die Teilmatrix $J_{f,y}(z_0)\in\mathbb{R}^{m\times m}$ der Jacobi-Matrix $J_f(z_0)\in\mathbb{R}^{m\times (m+k)}$ bestehend aus
+\begin{equation*}
+\partial_j f_i(z),\;\;1\leq i\leq m,\;\;k+1\leq j\leq k+m
+\end{equation*}
+muss invertierbar sein.\\\\
+\textbf{Satz der Umkehrabbildung:}\\
+Ist ein Vektorfeld $f:\Omega\subset\mathbb{R}^n\rightarrow\mathbb{R}^n$ umkehrbar, dann gilt:
+\begin{equation*}
+f^{-1}(f(x))=x\;f\ddot{u}r\;alle\;x\in\Omega
+\end{equation*}
+Sind $f$ und $f^{-1}$ stetig differenzierbar, so folgt aus der Kettenregel:
+\begin{equation*}
+J_{f^{-1}}(f(x))J_f(x)=I
+\end{equation*}
+Sei $\Omega\subset\mathbb{R}^n$ offen und sei $f:\Omega\rightarrow\mathbb{R}^n$ ein stetig differenzierbares Vektorfeld. Sei $x_0\in\Omega, y_0=f(x_0)$ und sei die Jacobi-Matrix $J_f(x_0)$ invertierbar. Dann gibt es eine Umgebung $U\subset \Omega$ von $x_0$ und eine Umgebung $V\subset f(\Omega)$ von $y_0$, sodass $f$ die Menge $U$ auf die Menge $V$ bijektiv abbildet. Die Umkehrfunktion $f^{-1}:V\rightarrow U$ ist stetig differenzierbar und es gilt:
+\begin{equation*}
+J_{f^{-1}}(f(x))=(J_f(x))^{-1}\;f\ddot{u}r\;alle\;x\in U
+\end{equation*}
+
+\subsection{Mittelwertsatz}
+
+\subsubsection{Für Skalarfelder}
+Sei $\Omega\subset\mathbb{R}^n$ eine offene Menge, $f:\Omega\rightarrow\mathbb{R}$ ein stetig differenzierbares Skalarfeld und $x,y\in\Omega$. Es gelte zusätzlich $[x,y]\subset\Omega$.\\
+Dann gibt es eine Zwischenstelle $\xi\in[x,y]$, sodass
+\begin{equation*}
+f(y)-f(x)=\nabla f(\xi)^T(y-x)
+\end{equation*}
+gilt. Außerdem hat man die folgende Abschätzung
+\begin{equation*}
+|f(y)-f(x)|\leq C||y-x||
+\end{equation*}
+mit
+\begin{equation*}
+C=\max\limits_{z\in [x,y]}||\nabla f(z)||
+\end{equation*}
+
+\subsubsection{Für Vektorfelder}
+Der Mittelwertsatz ist nicht direkt auf Vektorfelder übertragbar.\\
+$\Rightarrow$ Ungleichungsvariante des Mittelwertsatzes:\\
+Sei $\Omega\subset\mathbb{R}^n$ eine offene Menge und $f:\Omega\rightarrow\mathbb{R}^m$ ein stetig differenzierbares Vektorfeld. Seien $x,y\in\Omega$ und $[x,y]\subset\Omega$, dann gilt:
+\begin{equation*}
+||f(y)-f(x)||\leq C||y-x||
+\end{equation*}
+wobei die Konstante $C$ gegeben als
+\begin{equation*}
+C=\max\limits_{z\in [x,y]}|||J_f(z)|||
+\end{equation*}
+mit der Jacobi-Matrix $J_f(x)$ und der Matrizennorm
+\begin{equation*}
+|||A|||=\sup\limits_{v\in\mathbb{R}^n,v\neq 0}\frac{||Av||}{||v||}
+\end{equation*}
+
+\section{Eigenwerte, Matrixfaktorisierungen}
+Sei $f:V\rightarrow V$ eine lineare Selbstabbildung des Vektorraumes $V$. Um die Struktur dieser Abbildung zu studieren, sucht man oft nach einer Basis $B=(v_1,v_2,...,v_n)$ von $V$ derart, dass die entsprechende Abbildungsmatrix eine einfache Form besitzt, z.B. eine Diagonalmatrix ist.
+
+\subsection{Eigenwerte}
+Eine reelle Zahl $\lambda$ heißt Eigenwert der Matrix $A\in\mathbb{R}^{n\times n}$, wenn es einen Vektor $x\in\mathbb{R}^n$ gibt mit
+\begin{equation*}
+Ax=\lambda x\;und\;x\neq 0
+\end{equation*}
+Entsprechend definiert man auch komplexe Eigenwerte $\lambda\in\mathbb{C}$ für Matrizen in $\mathbb{C}^{n\times n}$.\\\\
+\textbf{Berechnung:}\\
+Eine Zahl $\lambda\in\mathbb{R}$ (bzw. $\lambda\in\mathbb{C}$) ist genau dann ein Eigenwert einer ($n\times n$)-Matrix $A$, wenn 
+das sog. charakteristische Polynom gleich Null ist, d.h.
+\begin{equation*}
+det(A-\lambda I_n)\sollsein 0
+\end{equation*}
+Die Vielfachheit $k_i$ der Nullstelle $\lambda_i$ heißt \textbf{algebraische Vielfachheit} des Eigenwertes $\lambda_i$.\\
+Seien $\lambda_1,\lambda_2,...,\lambda_n$ alle Eigenwerte der Matrix $A$ mit den algebraischen Vielfachheiten $k_i$, dann gilt:
+\begin{equation*}
+det(A)=\lambda_1^{k_1}\cdot \lambda_2^{k_2} \cdot ...\cdot \lambda_n^{k_n}
+\end{equation*}
+
+\subsection{Eigenvektoren}
+Die Eigenvektoren ergeben sich als nichttriviale Lösungen des homogenen LGS
+\begin{equation*}
+(A-\lambda I_n)x=0
+\end{equation*}
+Die Lösungsmenge dieses LGS ist ein Unterraum $V_{\lambda}=Kern(A-\lambda I_n)$. Alle Vektoren $x$ mit $x\neq 0$ in diesem Eigenraum $V_{\lambda}$ sind Eigenvektoren zum Eigenwert $\lambda$.\\
+Die Dimension des Eigenraumes $V_{\lambda}$ nennt man \textbf{geometrische Vielfachheit} des Eigenwertes $\lambda$. Es gilt:
+\begin{equation*}
+1\leq dim(V_{\lambda_i})\leq k_i
+\end{equation*}
+Die Eigenvektoren $w_1,w_2,...,w_i$ zu paarweise verschiedenen Eigenwerten $\lambda_1,\lambda_2,...,\lambda_i$ sind linear unabhängig.
+
+\subsection{Diagonalisierung}
+\begin{enumerate}[label=$\bullet$]
+\item Eine lineare Abbildung $f:V\rightarrow V$ heißt diagonalisierbar, falls es eine Basis gibt, bezüglich derer die Abbildungsmatrix von $f$ eine Diagonalmatrix ist.\\
+Sei die Abbildung $f:V\rightarrow V$ diagonalisierbar, $(w_1,w_2,...,w_n)$ die entsprechende Basis und $D$ die Abbildungsmatrix von $f$ in der Form
+\begin{equation*}
+D=\begin{pmatrix}\lambda_1 & 0 & ... & 0 \\ 0 & \lambda_2 & \ddots & \vdots \\ \vdots & \ddots & \ddots & 0 \\ 0 & ... & 0 & \lambda_n\end{pmatrix}
+\end{equation*}
+mit nicht notwendigerweise verschiedenen Zahlen $\lambda_i$. Dann gilt
+\begin{equation*}
+f(w_i)=\lambda_i w_i
+\end{equation*}
+und somit ist $\lambda_i$ ein Eigenwert und $w_i$ ein Eigenvektor zum Eigenwert $\lambda_i$.
+\item Eine Matrix heißt diagonalisierbar, falls es eine invertierbare Matrix $T\in\mathbb{R}^{n\times n}$ und eine Diagonalmatrix $D\in\mathbb{R}^{n\times n}$ gibt mit der Eigenschaft
+\begin{equation*}
+T^{-1}AT=D
+\end{equation*}
+Die Matrix $D$ besteht dann aus den Eigenwerten der Matrix $A$ und die Spalten der Matrix $T$ bilden eine Basis aus linear unabhängigen Eigenvektoren der Matrix $A$.
+\item Besitzt eine Matrix $A\in\mathbb{R}^{n\times n}\;n$ verschiedene Eigenwerte, so ist diese Matrix diagonalisierbar.
+\item Eine Matrix $A\in\mathbb{R}^{n\times n}$ (bzw. $A\in\mathbb{C}^{n\times n}$) ist genau dann diagonalisierbar, wenn folgende zwei Bedingungen erfüllt sind:
+\begin{enumerate}
+\item Das charakteristische Polynom $\mathcal{X}_A$ zerfällt in Linearfaktoren
+\begin{equation*}
+\mathcal{X}_A(t)=(\lambda_1 -t)^{k_1}\cdot (\lambda_2 -t)^{k_2}\cdot ...\cdot(\lambda_r -t)^{k_r}
+\end{equation*}
+mit $\lambda_i\in\mathbb{R}$ (bzw. $\lambda_i\in\mathbb{C}$).
+\item Die algebraischen Vielfachheiten aller Eigenwerte stimmen mit den geometrischen Vielfachheiten überein, d.h.
+\begin{equation*}
+k_i=dim(V_{\lambda_i}),\;\;i=1,2,...,r
+\end{equation*}
+\end{enumerate}
+\end{enumerate}
+
+\subsubsection{Spezielle Eigenschaften}
+\begin{enumerate}[label= $\bullet$]
+\item $A$ und $A^{-1}$ besitzen die gleichen Eigenvektoren, die Eigenwerte sind invers zueinander
+\item Eine symmetrische Matrix $A\in\mathbb{R}^{n\times n}$ hat nur reelle Eigenwerte und es existiert eine Orthonormalbasis aus Eigenvektoren.\\
+Eigenvektoren zu unterschiedlichen Eigenwerten sind bei symmetrischen Matrizen stets orthogonal zueinander. Falls die Eigenvektoren des gleichen Eigenwertes nicht orthogonal sind, muss das Gram-Schmidt-Verfahren angewendet werden.
+\end{enumerate}
+
+\subsection{Ähnliche Matrizen}
+Zwei $(n\times n)$-Matrizen $A$ und $B$ heißen ähnlich, wenn es eine invertierbare Matrix $T$ gibt, mit der Eigenschaft
+\begin{equation*}
+T^{-1}AT=B
+\end{equation*}
+Ähnliche Matrizen haben dieselben Eigenwerte mit identischen algebraischen und geometrischen Vielfachheiten (Umkehrung gilt nicht!) aber nicht notwendigerweise die gleichen Eigenvektoren. Daraus folgt, dass sie
+\begin{enumerate}
+\item den gleichen Rang
+\item die gleiche Determinante
+\item die gleiche Spur
+\item das gleiche charakteristische Polynom
+\end{enumerate}
+haben.\\\\
+Eine diagonalisierbare Matrix ist immer zu einer Diagonalmatrix ähnlich.
+
+\subsection{Definitheit}
+Für eine symmetrische Matrix $A\in\mathbb{R}^{n\times n}$ gilt:
+\begin{enumerate}[label=$\bullet$]
+\item Falls alle Eigenwerte $>0\Rightarrow$ Positiv definit
+\item Falls alle Eigenwerte $\geq 0\Rightarrow$ Positiv semidefinit
+\item Falls alle Eigenwerte $<0\Rightarrow$ Negativ definit
+\item Falls alle Eigenwerte $\leq 0\Rightarrow$ Negativ semidefinit
+\item Falls positive und negative Eigenwerte existieren\\
+$\Rightarrow$ Indefinit
+\end{enumerate}
+Die Matrix $A^TA$ ist positiv semidefinit.
+
+\subsection{Spektralnorm}
+Es gilt:
+\begin{equation*}
+|\lambda|\leq ||A||
+\end{equation*}
+\begin{equation*}
+|\lambda|\leq ||A||_{\infty}=\max\limits_{1\leq i\leq n}\sum\limits_{j=1}^{n}|a_{ij}|\;\;(max. Zeilensumme)
+\end{equation*}
+\begin{equation*}
+|\lambda|\leq ||A||_1=\max\limits_{1\leq j\leq n}\sum\limits_{i=1}^{n}|a_{ij}|\;\;(max. Spaltensumme)
+\end{equation*}
+Sei $A$ eine symmetrische Matrix, dann gilt:
+\begin{equation*}
+||A||_2 =|\lambda_{max}|=\{|\lambda|\;|\lambda\in\mathbb{R}\;ist\;Eigenwert\;von\;A\}
+\end{equation*}
+Für beliebige $\mathbb{R}^{n\times n}$-Matrizen gilt:
+\begin{equation*}
+||A||_2=max\{\sqrt{\mu}|\mu\in\mathbb{R}\;ist\;Eigenwert\;von\;A^TA\}
+\end{equation*}
+
+\subsection{Schurzerlegung}
+Gegeben sei $A\in\mathbb{R}^{n\times n}$ mit dem charakteristischen Polynom $\mathcal{X}_A(t)$, das in Linearfaktoren zerfällt. Dann gibt es eine orthogonale Matrix $U\in\mathbb{R}^{n\times n}$, sodass
+\begin{equation*}
+R=U^TAU
+\end{equation*}
+mit einer oberen Dreiecksmatrix $R$ gilt (falls $A$ symmetrisch $\Rightarrow R$ ist Diagonalmatrix).\\
+Wenn das charakteristische Polynom nicht über $\mathbb{R}$ zerfällt, dann über $\mathbb{C}$ mit einer Matrix $U\in\mathbb{C}^{n\times n}$, sodass $\overline{U}^TU=I_n$ (=unitär) und für eine obere Dreiecksmatrix $R\in\mathbb{C}^{n\times n}\;R=\overline{U}^TAU$ gilt.\\\\
+\textbf{Berechnung der Schurzerlegung:}\\
+Sei $f:\mathbb{R}^n\rightarrow\mathbb{R}^n$ die lineare Abbildung, die mit der Matrix $A$ assoziiert wird, d.h. $f(x)=Ax$.
+\begin{enumerate}
+\item Bestimme einen Eigenwert $\lambda_1$ von $A$ und einen normierten Eigenvektor $v_1$ zu $\lambda_1$.
+\item Wähle $n-1$ Vektoren $w_2,w_3,...,w_n$, sodass die Vektoren $v_1,w_2,w_3,...,w_n$ eine Orthonormalbasis bilden. Diese Vektoren bilden die Spalten einer orthogonalen Matrix $V_1$
+\begin{equation*}
+V_1=(v_1,w_2,w_3,...,w_n)
+\end{equation*}
+\item Aufgrund der Bedingung $f(v_1)=Av_1=\lambda v_1$ hat die Abbildungsmatrix der Abbildung $f$ in der neuen Basis $v_1, w_2, w_3,...,w_n$ die Form
+\begin{equation*}
+\overset{\sim}{A}=V_1^TAV_1=\begin{pmatrix}\lambda_1 & * & \\ 0 & A_1\end{pmatrix}
+\end{equation*}
+mit einer Matrix $A_1\in\mathbb{R}^{(n-1)\times(n-1)}$.
+\item Man wiederholt die vorherigen Schritte für die Matrizen $A_1,A_2,...,A_{n-2}$ solange, bis man alle Matrizen $V_1,V_2,...,V_{n-1}$ erhalten hat.
+\item Berechne die Matrizen $\hat{V}_2,\hat{V}_3,...,\hat{V}_{n-1}\in\mathbb{R}^{n\times n}$ wie folgt:
+\begin{equation*}
+\hat{V}_i=\begin{pmatrix}1 & 0 & ... & 0 \\ 0 & 1 & \ddots & \vdots \\ \vdots & \ddots & \ddots & 0 \\ 0 & ... & 0 & V_i\end{pmatrix}
+\end{equation*}
+\item Berechne $Q=V_1\cdot\hat{V}_2\cdot\hat{V}_3\cdot ...\cdot \hat{V}_{n-1}$
+\item Berechne
+\begin{equation*}
+R=Q^TAQ=\begin{pmatrix}\lambda_1 & * & ... & * \\ 0 & \lambda_2 & \ddots & \vdots \\ \vdots & \ddots & \ddots & * \\ 0 & ... & 0 & \lambda_n\end{pmatrix}
+\end{equation*}
+\end{enumerate}
+
+\subsection{Singulärwertzerlegung}
+Sei $A\in\mathbb{R}^{m\times n}$ eine Matrix. Dann gibt es zwei orthogonale Matizen $U\in\mathbb{R}^{m\times m},V\in\mathbb{R}^{n\times n}$ und eine Diagonalmatrix $\Sigma\in\mathbb{R}^{m\times n}$ der Form
+\begin{equation*}
+\Sigma =\begin{pmatrix}\sigma_1 & ... & 0 & 0 & ... & 0 \\ \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\ 0 & ... & \sigma_m & 0 & ... & 0\end{pmatrix}\;\;falls\;m\leq n
+\end{equation*}
+\begin{equation*}
+\Sigma = \begin{pmatrix}\sigma_1 & ... & 0 \\ \vdots & \ddots & \vdots \\ 0 & ... & \sigma_n \\ 0 & ... & 0 \\ \vdots & \ddots & \vdots \\ 0 & ... & 0\end{pmatrix}\;\;falls\;m\geq n
+\end{equation*}
+mit
+\begin{equation*}
+\sigma_1\geq\sigma_2\geq ...\geq\sigma_k\geq 0,\;k=\min(m,n)
+\end{equation*}
+die die folgende Darstellung erlauben:
+\begin{equation*}
+A=U\Sigma V^T
+\end{equation*}
+Die Zahlen $\sigma_1,\sigma_2,...,\sigma_k$ heißen Singulärwerte von $A$ und die Darstellung $A=U\Sigma V^T$ heißt Singulärwertzerlegung (SVD).\\\\
+\textbf{Berechnung der Singulärwertzerlegung:}\\
+\begin{enumerate}
+\item Man bestimmt die Eigenwerte $\lambda_l$ der Matrix $A^TA\in\mathbb{R}^{n\times n}$ und sortiert sie
+\begin{equation*}
+\lambda_1\geq \lambda_2\geq ...\geq\lambda_n\geq 0
+\end{equation*}
+und berechnet die zugehörigen normierten Eigenvektoren $v_l$.
+\item Die Matrix $\Sigma$ mit den Singulärwerten ergibt sich durch die Gleichung
+\begin{equation*}
+\sigma_l=\sqrt{\lambda_l},\;l=1,2,...,k=\min(m,n)
+\end{equation*}
+\item Die Matrix $V$ ergibt sich als
+\begin{equation*}
+V=(v_1,v_2,...,v_n)
+\end{equation*}
+\item Die Vektoren $u_1,u_2,...,u_m$ werden durch die Gleichung
+\begin{equation*}
+u_l=\frac{1}{\sigma_l}Av_l
+\end{equation*}
+bestimmt.\\
+Falls $n<m$ oder falls $\sigma_l =0$, dann müssen die Vektoren mit Hilfe des Gram-Schmidt-Verfahrens zu einer Orthonormalbasis von $\mathbb{R}^m$ ergänzt werden.\\
+Anschließend erhält man die Matrix $U$:
+\begin{equation*}
+U=(u_1,u_2,...,u_m)
+\end{equation*}
+\end{enumerate}
+Für die Zerlegung von $A^T$ gilt:
+\begin{equation*}
+\Sigma_{A^T}=(\Sigma_A)^T,\;\;V_{A^T}=U_A,\;\;U_{A^T}=V_A
+\end{equation*}
+
+\section{Extremwertaufgaben}
+
+\subsection{Extremwertaufgaben ohne Nebenbedingungen}
+Sei $\Omega\subset\mathbb{R}^n,\;f:\Omega\rightarrow\mathbb{R}$ ein Skalarfeld. Ein Punkt $\hat{x}\in\Omega$ heißt lokales Minimum von $f$, wenn es eine (offene) Umgebung $b_{\epsilon}(\hat{x})$ gibt, sodass
+\begin{equation*}
+f(\hat{x})\leq f(x)\;f\ddot{u}r\;alle\;x\in B_{\epsilon}(\hat{x})\cap\Omega
+\end{equation*}
+gilt.\\
+Sei $\hat{x}$ ein \textbf{lokales Minimum} und es gelte zusätzlich
+\begin{equation*}
+f(\hat{x})< f(x)\;f\ddot{u}r\;alle\;x\in B_{\epsilon}(\hat{x})\cap\Omega,\;x\neq \hat{x}
+\end{equation*}
+in einer Umgebung $B_{\epsilon}(\hat{x})$, so spricht man von einem \textbf{strikten lokalen Minimum}.\\
+Analog dazu wird das (strikte) lokale Maximum definiert.\\\\
+\textbf{Notwendige Bedingung erster Ordnung:}\\
+Sei $f:\Omega\subset\mathbb{R}^n\rightarrow\mathbb{R}$ partiell differenzierbar und sei $\hat{x}\in int(\Omega)$ ein lokales Extremum, dann gilt
+\begin{equation*}
+\nabla f(\hat{x})=0
+\end{equation*}\\
+\textbf{Notwendige Bedingung zweiter Ordnung}:\\
+Sei $f:\Omega\subset\mathbb{R}^n\rightarrow\mathbb{R}$ ein zweimal stetig differenzierbares Skalarfeld und sei $\hat{x}\in int(\Omega)$ ein lokales Minimum, dann gilt $\nabla f(\hat{x})=0$ und die Hessematrix $H_f(\hat{x})$ ist an der Stelle $\hat{x}$ positiv semidefinit.\\
+Dementsprechend gilt für ein Maximum, dass die Hessematrix $H_f(\hat{x})$ an der Stelle $\hat{x}$ negativ semidefinit ist.\\
+Für strikte lokale Extrema gelten die Kriterien positiv bzw. negativ definit.\\\\
+\textbf{Vorgehen zur Bestimmung von Extrema:}\\
+\begin{enumerate}
+\item Suche alle stationären Punkte $\nabla f(\hat{x})=0$
+\item Bestimme die Hessematrix $H_f(\hat{x})$
+\begin{enumerate}[label=$\bullet$]
+\item Falls $H_f(\hat{x})$ positiv definit $\Rightarrow$ Minimum
+\item Falls $H_f(\hat{x})$ negativ definit $\Rightarrow$ Maximum
+\item Falls $H_f(\hat{x})$ indefinit $\Rightarrow$ Sattelpunkt
+\item Falls $H_f(\hat{x})$ semidefinit $\Rightarrow$ keine Aussage möglich
+\end{enumerate}
+\end{enumerate}
+
+\subsection{Ausgleichsrechnung (Least squares)}
+Man betrachte eine Funktion
+\begin{equation*}
+b=f(t)=x_0+x_1t+...+x_nt^n
+\end{equation*}
+mit unbekannten Koeffizienten $x_0,x_1,...,x_n$. Es sind $m$ Paare $(t_i,b_i)$ z.B. aus Messungen gegeben. Man kann die Koeffizienten aufgrund von Messfehlern meist nicht durch Gleichungssysteme finden.\\\\
+\textbf{Lösung:}\\
+Man sucht den Koeffizientenvektor $x=(x_0,x_1,...,x_n)^T\in\mathbb{R}^n$ für den die sogenannten Residuen $r_i(x)=b_i-x_0-x_1t_i-...-x_nt_i^n$ möglichst klein sind. Man formuliert dies über den Ansatz der kleinsten Quadrate:
+\begin{equation*}
+Minimiere\;\sum\limits_{i=1}^{m}(b_i-x_0-x_1t_i-...-x_nt_i^n)
+\end{equation*}
+Fasst man die Residuen $r_i(x)$ zu einem Vektor $r(x)\in\mathbb{R}^m$ zusammen, so muss man folgendes Problem lösen:
+\begin{equation*}
+Minimiert\;||r(x)||^2,\;r(x)=b-Ax
+\end{equation*}
+mit
+\begin{equation*}
+A=\begin{pmatrix}1 & t_1 & t_1^2 & ... & t_1^n \\ 1 & t_2 & t_2^2 & ... & t_2^n \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & t_m & t_m^2 & ... & t_m^n\end{pmatrix}
+\end{equation*}
+Ist $\hat{x}$ ein Minimum $||r(x)||^2$, so muss $\hat{x}$ die sogenannte Normalengleichung lösen:
+\begin{equation*}
+A^TA\hat{x}=A^Tb
+\end{equation*}
+
+\subsection{Extremwertaufgaben unter Nebenbedingungen}
+Aufgaben vom Typ: Minimiere $f(x)$ unter der Nebenbedingung $g(x)=0$ mit $f,g:\Omega\subset\mathbb{R}^n\rightarrow\mathbb{R}$ heißen Optimierungsaufgaben unter Nebenbedingungen.\\
+Die Menge
+\begin{equation*}
+\Omega_{ad}=\{x\in\Omega|g(x)=0\}
+\end{equation*}
+wird zulässige Menge genannt.\\
+Ein Punkt $\hat{x}\in\Omega_{ad}$ heißt lokale Lösung dieser Optimierungsaufgabe, wenn es eine Umgebung $B_{\epsilon}(\hat{x})$ gibt, sodass gilt
+\begin{equation*}
+f(\hat{x})\leq f(x)\;f\ddot{u}r\;alle\;x\in B_{\epsilon}(\hat{x})\cap\Omega_{ad}
+\end{equation*}
+Für die lokale Lösung $\hat{x}$ ist die Bedingung $\nabla f(\hat{x})=0$ im Allgemeinen nicht erfüllt!\\
+Entsprechend kann man Maximierungsaufgaben mit Nebenbedingungen betrachten.\\\\
+\textbf{Notwendige Bedingung erster Ordnung:}\\
+Seien $f,g:\Omega\subset\mathbb{R}^n\rightarrow\mathbb{R}$ zwei Frèchet-differenzierbare Skalarfelder und $\hat{x}\in int(\Omega)$ sei ein lokales Minimum der Optimierungsaufgabe
+\begin{equation*}
+Minimiere\;f(x)\;unter\;der\;Nebenbedingung\;g(x)=0.
+\end{equation*}
+Gilt zusätzlich $\nabla g(\hat{x})\neq 0$, dann gibt es einen Lagrange-Multiplikator $\hat{\lambda}\in\mathbb{R}$ mit
+\begin{equation*}
+\nabla f(\hat{x})+\hat{\lambda}\nabla(\hat{x})=0
+\end{equation*}
+\textbf{Lösung:}\\
+\begin{enumerate}
+\item Formuliere die Lagrange-Funktion
+\begin{equation*}
+L(x,\lambda)=f(x)+\lambda g(x)
+\end{equation*}
+\item Suche die stationären Punkte von $L$:
+\begin{equation*}
+\nabla L(x,\lambda)=\begin{pmatrix}\nabla_x L(x,\lambda) \\ \partial_{\lambda} L(x,\lambda)\end{pmatrix}=\begin{pmatrix}\nabla f(x)+\lambda\nabla g(x) \\ g(x)\end{pmatrix}\sollsein 0
+\end{equation*}
+\item Setze die stationären Punkte in $f(x)$ ein und suche den höchsten Wert.
+\end{enumerate}
+Ist die Nebenbedingung $g(x)$ ein Vektorfeld, so wird $\lambda$ ebenfalls zum Vektor und es gilt
+\begin{equation*}
+L(x,\lambda)=f(x)+\lambda^T g(x)
+\end{equation*}
+
+\section{Kurvenintegrale}
+
+\subsection{Kurvenintegral eines Skalarfeldes}
+Sei $D\subset\mathbb{R}^n$ offen, $w:I=[a,b]\rightarrow D$ eine differenzierbare Kurve und $f:D\rightarrow\mathbb{R}$ ein stetiges Skalarfeld, dann heißt
+\begin{equation*}
+\int\limits_{w} f\;ds=\int\limits_{a}^{b}f(w(t))||w'(t)||dt
+\end{equation*}
+das \textbf{Kurvenintegral} von $f$ entlang von $w$.\\
+Die \textbf{Länge einer Kurve} ist gleich dem Kurvenintegral für $f=1$ entlang der Kurve:
+\begin{equation*}
+L(w)=\int\limits_{w}ds=\int\limits_{a}^{b}||w'(t)||dt
+\end{equation*}
+Ist eine Kurve stückweise differenzierbar, so kann man über die einzelnen Kurvenstücke integrieren und danach aufaddieren.\\\\
+\textbf{Rechenregel (Linearität):}\\
+\begin{equation*}
+\int\limits_{w}(\alpha f+\beta g)ds=\alpha\int\limits_{w}f\;ds+\beta\int\limits_{w} g\;ds
+\end{equation*}
+
+\subsection{Kurvenintegral eines Vektorfeldes}
+Sei $E\subset\mathbb{R}^n$ offen, $w:I=[a,b]\rightarrow D$ eine differenzierbare Kurve und $f:D\rightarrow\mathbb{R}^n$ ein stetiges Vektorfeld, dann heißt
+\begin{equation*}
+\int\limits_{w}f\;dx=\int\limits_{a}^{b}f(w(t))\cdot w'(t)dt=\int\limits_{a}^{b}f(w(t))T(t)||w'(t)||dt
+\end{equation*}
+das \textbf{Kurvenintegral} von $f$ entlang von $w$.\\\\
+Mit dem Tangenteneinheitsvektor
+\begin{equation*}
+T(t)=\frac{1}{||w'(t)||}w'(t)
+\end{equation*}
+gilt
+\begin{equation*}
+\int\limits_{w}f\;dx=\int\limits_{w}(f\cdot T)ds
+\end{equation*}
+Ist die Kurve geschlossen, d.h. $w(a)=w(b)$, so verwendet man oftmals die Bezeichnung
+\begin{equation*}
+\oint\limits_{w}f\;dx
+\end{equation*}
+Für das Kurvenintegral des Vektorfeldes gilt die gleiche Linearität wie für das Kurvenintegral des Skalarfeldes.
+
+\subsection{Gradientenfelder}
+Eine Menge $D\subset\mathbb{R}^n$ heißt \textbf{wegzusammenhängend}, falls es zu je zwei Punkten $x,y$ aus $D$ eine Kurve $w:[a,b]\rightarrow D$ mit $w(a)=x$ und $w(b)=y$ gibt.\\
+Eine wegzusammenhängende Menge $D\subset\mathbb{R}^n$ heißt \textbf{einfach zusammenhängend}, wenn jede geschlossene doppelpunktfreie Kurve in $D$ stetig auf einen Punkt in $D$ zusammengezogen werden kann, ohne dass $D$ verlassen wird.\\
+Sei $C\in\mathbb{R}^n$ eine offene und wegzusammenhängende Menge. Ein stetiges Vektorfeld $f:D\rightarrow\mathbb{R}^n$ heißt \textbf{konservativ}, \textbf{Potentialfeld} oder \textbf{Gradientenfeld}, wenn es ein Skalarfeld $F:D\rightarrow\mathbb{R}$ gibt mit
+\begin{equation*}
+f(x)=\nabla F(x)\;f\ddot{u}r\;alle\;x\in D
+\end{equation*}
+In diesem Fall heißt $F$ \textbf{Stammfunktion} und $U=-F$ eine \textbf{Potentialfunktion} von $f$.\\
+Ist ein Vektorfeld konservativ und kennt man die Stammfunktion, so kann man direkt das entsprechende Kurvenintegral betimmen:
+\begin{equation*}
+\int\limits_{w}f\;dx=F(w(b))-F(w(a))
+\end{equation*}
+Sei $D\subset\mathbb{R}^n$ eine wegzusammenhängende offene Menge und sei $f:D\rightarrow\mathbb{R}^n$ ein stetiges Vektorfeld, dann sind folgende Aussagen äquivalent:
+\begin{enumerate}[label=$\bullet$]
+\item $f$ ist ein Gradientenfeld
+\item Für alle stetig differenzierbaren Kurven $w$ in $D$ hängt das Kurvenintegral $\int\limits_{w}f\;dx$ nur vom Anfangs- und Endpunkt von $w$ ab.
+\item Für alle geschlossenen stetig differenzierbaren Kurven $w$ in $D$ gilt
+\begin{equation*}
+\oint\limits_{w} f\;dx=0
+\end{equation*}
+\end{enumerate}
+\textbf{Überprüfung auf Gradientenfeld:}\\
+Sei $D\subset\mathbb{R}^n$ eine offene, einfach zusammenhängende Menge und sei $f:D\rightarrow\mathbb{R}^n$ ein stetig differenzierbares Vektorfeld. Dieses Vektorfeld ist genau dann ein Gradientenfeld, wenn die sogenannte \textbf{Integrabilitätsbedingung}
+\begin{equation*}
+J_f(x)=J_f(x)^T\;f\ddot{u}r\;alle\;x\in D
+\end{equation*}
+bzw.
+\begin{equation*}
+\partial_{x_i}f_j(x)=\partial_{x_j}f_i(x)\;f\ddot{u}r\;alle\;1\leq i,j\leq n
+\end{equation*}
+erfüllt ist.\\\\
+\textbf{Für dreidimensionale Gebiete:}\\
+Sei $D\subset\mathbb{R}^n$ eine offene, einfach zusammenhängende Menge und sei $f:D\rightarrow\mathbb{R}^3$ ein stetig differenzierbares Vektorfeld. $f$ ist genau dann ein Gradientenfeld, wenn gilt:
+\begin{equation*}
+rot(f(x))=0\;f\ddot{u}r\;alle\;x\in D
+\end{equation*}
+\textbf{Berechnung der Stammfunktion:}
+\begin{enumerate}
+\item Man wähle einen festen Punkt $x_0\in D$
+\item Zu jedem weiteren Punkt $y\in D$ wählt man eine Kurve $w_y:[a,b]\rightarrow D$ mit $w_y(a)=x_0$ und $w_y(b)=y$
+\item Man berechnet die Stammfunktion durch
+\begin{equation*}
+F(y)=\int\limits_{w_y}f\;dx
+\end{equation*}
+\end{enumerate}
+\vspace{1cm}
+Diese Formelsammlung ist eine überarbeitete und erweiterte Version der "Formelsammlung Mathematik 2 für Elektroingenieure" von Sebastian Wagner.\\\\
+Lizenz: CC BY-NC-SA 3.0\\
+\url{http://creativecommons.org/licenses/by-nc-sa/3.0/de/}
+
+\end{document}
+
+
+
+
+
+
+
+
